@@ -12,31 +12,59 @@ const books = [
     {
         title: "Atomic Habits",
         author: "James Clear",
-        image: "./images/book1.jpg",
+        image: "https://m.media-amazon.com/images/I/51B7kuFwQFL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg",
     },
 ];
 
 const BookList = () => {
     return (
         <section className="book-list">
-            {books.map((book) => {
+            <EventExamples />
+            {books.map((book, index) => {
                 const { title, author, image } = book;
-                return (
-                    <Book img={image} author = {author} title={title} />
-                );
+                return <Book book={book} key={index} />;
             })}
         </section>
     );
 };
 
+const EventExamples = () => {
+    const handleFormInput = () => {
+        console.log("Handle form input!");
+    };
+
+    const handleButtonClick = () => {
+        alert("Handle form input!");
+    };
+
+    const handleFormSubmission = () => {
+        alert("Handle Form Submission");
+    };
+    return (
+        <section>
+            <form action="" onSubmit={handleFormSubmission}>
+                <h2>Typical form</h2>
+                <input
+                    type="text"
+                    name="example"
+                    id=""
+                    onChange={handleFormInput}
+                    style={{ margin: "1rem 0" }}
+                />
+            </form>
+            <button onClick={handleButtonClick}>Click here</button>
+        </section>
+    );
+};
+
 const Book = (props) => {
-    const { img, author, title } = props;
+    const { image, author, title } = props.book;
     return (
         <article className="book">
-            <img src={img} alt={title} />
+            <img src={image} alt={title} />
             <h2>{title}</h2>
 
-            <h1>{author.toUpperCase()}</h1>
+            <h1>{author}</h1>
         </article>
     );
 };
