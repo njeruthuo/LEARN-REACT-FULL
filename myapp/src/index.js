@@ -2,26 +2,38 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import "./index.css";
+const books = [
+    {
+        title: "Interesting Facts For Curious Minds",
+        author: "Jordan Moore",
+        image: "./images/book1.jpg",
+    },
 
-const title = "Interesting Facts For Curious Minds";
-const author = "Jordan Moore";
-const image = "./images/book1.jpg";
+    {
+        title: "Atomic Habits",
+        author: "James Clear",
+        image: "./images/book1.jpg",
+    },
+];
 
 const BookList = () => {
     return (
         <section className="book-list">
-            <Book />
-            <Book />
-            <Book />
-            <Book />
+            {books.map((book) => {
+                const { title, author, image } = book;
+                return (
+                    <Book img={image} author = {author} title={title} />
+                );
+            })}
         </section>
     );
 };
 
-const Book = () => {
+const Book = (props) => {
+    const { img, author, title } = props;
     return (
         <article className="book">
-            <img src={image} alt={title} />
+            <img src={img} alt={title} />
             <h2>{title}</h2>
 
             <h1>{author.toUpperCase()}</h1>
